@@ -1,5 +1,6 @@
 [Unit]
-Description=dntrecv
+Description=dtnrecv
+After=network.target nss-lookup.target dtnd.service
 
 [Service]
 Environment="LD_LIBRARY_PATH=/home/pi/maybenet/build/lib:$LD_LIBRARY_PATH"
