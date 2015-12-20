@@ -1,0 +1,11 @@
+[Unit]
+Description=dntd
+
+[Service]
+Type=forking
+Environment="LD_LIBRARY_PATH=/home/pi/maybenet/build/lib:$LD_LIBRARY_PATH"
+ExecStart=/home/pi/maybenet/build/bin/dtnd -c /home/pi/maybenet/etc/dtn.conf -d -o /home/pi/maybenet/var/dtnd.log
+
+
+[Install]
+WantedBy=multi-user.target

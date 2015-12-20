@@ -1,5 +1,8 @@
 build : build/include/oasys build/include/dtn
 
+services : /etc/systemd/system/dtnd.service \
+		/etc/systemd/system/dtnrecv.service
+
 ext-src : ext/oasys-1.6.0 ext/dtn-2.9.0
 
 have_deps : 
@@ -7,7 +10,6 @@ have_deps :
 
 ext :
 	mkdir ext
-	cd ext
 	
 ext/dtn-2.9.0.tgz : ext
 	wget http://sourceforge.net/projects/dtn/files/DTN2/dtn-2.9.0/dtn-2.9.0.tgz -O $@
@@ -41,3 +43,10 @@ build/include/dtn:
 	make && \
 	make install
 
+
+
+/etc/systemd/system/%.service : etc/%.service
+	mkdir -p var && \
+	sudo ln -s /home/pi/maybenet/$< $@ && \
+	sudo systemctl enable $@ && \
+	sudo systemctl start $*.service 

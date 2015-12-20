@@ -1,0 +1,9 @@
+[Unit]
+Description=dntrecv
+
+[Service]
+Environment="LD_LIBRARY_PATH=/home/pi/maybenet/build/lib:$LD_LIBRARY_PATH"
+ExecStart=/home/pi/maybenet/build/bin/dtnrecv dtn://camerapi.dtn/*
+
+[Install]
+WantedBy=multi-user.target
